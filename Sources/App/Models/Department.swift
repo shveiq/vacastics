@@ -23,6 +23,18 @@ final class Department: Model {
     var updatedAt: Date?
     var status: String
     
+    ///Creates a new department
+    init(departmentID: Int? = nil, organisationID: Int, name: String, bossId: Int, createdAt: Date, updatedAt: Date? = nil, status: String)
+    {
+        self.departmentID = departmentID
+        self.organisationID = organisationID
+        self.name = name
+        self.bossId = bossId
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.status = status
+    }
+    
 }
 
 extension Department: Content { }

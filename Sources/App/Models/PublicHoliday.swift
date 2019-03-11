@@ -22,6 +22,16 @@ final class PublicHoliday: Model {
     var createdAt: Date
     var updatedAt: Date?
     
+    /// Creates a new public holiday.
+    init(publicHolidayID: Int? = nil, countryCode: String, name: String, date: Date, createdAt: Date, updatedAt: Date? = nil) {
+        self.publicHolidayID = publicHolidayID
+        self.countryCode = countryCode
+        self.name = name
+        self.date = date
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+    }
+    
 }
 
 extension PublicHoliday: Content { }

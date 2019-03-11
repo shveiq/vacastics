@@ -25,6 +25,20 @@ final class Holiday: Model {
     var declineReason: String?
     var status: String
     
+    ///Creates a new holiday
+    init(holidayID: Int? = nil, leaveTypeID: Int, requestedByID: Int, actionerID: Int, createdAt: Date, updatedAt: Date? = nil, reason: String? = nil, declineReason: String? = nil, status: String)
+    {
+        self.holidayID = holidayID
+        self.leaveTypeID = leaveTypeID
+        self.requestedByID = requestedByID
+        self.actionerID = actionerID
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.reason = reason
+        self.declineReason = declineReason
+        self.status = status
+    }
+    
 }
 
 extension Holiday: Content { }
@@ -42,6 +56,16 @@ final class HolidayDuration: Model {
     var holidayDateType: String
     var employeeID: Int
 
+    ///Creates a new leave type
+    init(holidayDurationID: Int? = nil, holidayID: Int, holidayDate: Date, holidayDateType: String, employeeID: Int)
+    {
+        self.holidayDurationID = holidayDurationID
+        self.holidayID = holidayID
+        self.holidayDate = holidayDate
+        self.holidayDateType = holidayDateType
+        self.employeeID = employeeID
+    }
+    
 }
 
 extension HolidayDuration: Content { }

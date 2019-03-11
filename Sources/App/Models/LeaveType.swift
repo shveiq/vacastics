@@ -23,6 +23,18 @@ final class LeaveType: Model {
     var updatedAt: Date?
     var color: String
     
+    ///Creates a new leave type
+    init(leaveTypeID: Int? = nil, organisationID: Int, name: String, requiresApproval: String, createdAt: Date, updatedAt: Date? = nil, color: String)
+    {
+        self.leaveTypeID = leaveTypeID
+        self.organisationID = organisationID
+        self.name = name
+        self.requiresApproval = requiresApproval
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.color = color
+    }
+    
 }
 
 extension LeaveType: Content { }

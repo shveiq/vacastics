@@ -24,6 +24,19 @@ final class Employee: Model {
     var endDate: Date?
     var status: String
     
+    ///Creates a new employee
+    init(employeeID: Int? = nil, userID: Int, departmentID: Int, createdAt: Date, updatedAt: Date? = nil, startDate: Date, endDate: Date? = nil, status: String)
+    {
+        self.employeeID = employeeID
+        self.userID = userID
+        self.departmentID = departmentID
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.startDate = startDate
+        self.endDate = endDate
+        self.status = status
+    }
+    
 }
 
 extension Employee: Content { }
@@ -41,6 +54,17 @@ final class EmployeeAllowance: Model {
     var allowance: Int
     var remaining: Int
     var used: Int
+    
+    ///Creates a new employee allowance
+    init(allowanceID: Int? = nil, employeeID: Int, year: Int, allowance: Int, remaining:Int, used: Int)
+    {
+        self.allowanceID = allowanceID
+        self.employeeID = employeeID
+        self.year = year
+        self.allowance = allowance
+        self.remaining = remaining
+        self.used = used
+    }
     
 }
 
@@ -61,6 +85,19 @@ final class EmployeeWorkday: Model {
     var fromTimePM: Int
     var toTimePM: Int
     var working: String
+
+    ///Creates a new employee workday
+    init(workDayID: Int? = nil, employeeID: Int, dayOfWeek: String, fromTimeAM: Int, toTimeAM: Int, fromTimePM:Int, toTimePM: Int, working: String)
+    {
+        self.workDayID = workDayID
+        self.employeeID = employeeID
+        self.dayOfWeek = dayOfWeek
+        self.fromTimeAM = fromTimeAM
+        self.toTimeAM = toTimeAM
+        self.fromTimePM = fromTimePM
+        self.toTimePM = toTimePM
+        self.working = working
+    }
 
 }
 

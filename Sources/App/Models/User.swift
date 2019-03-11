@@ -20,7 +20,7 @@ final class User: Model {
     var status: String
     
     /// Creates a new user.
-    init(userID: Int? = nil, email: String, password: String, firstname: String, surname: String, gravatarURL: String?, createdAt: Date, updatedAt: Date?, languageCode: String, status: String) {
+    init(userID: Int? = nil, email: String, password: String, firstname: String, surname: String, gravatarURL: String? = nil, createdAt: Date, updatedAt: Date? = nil, languageCode: String, status: String) {
         self.userID = userID
         self.email = email
         self.password = password
@@ -53,6 +53,18 @@ final class UserApplication: Model {
     var model: String
     var createdAt: Date
     var status: String
+    
+    /// Creates a new user application.
+    init(applicationID: Int? = nil, userID: Int, appcode: String, passcode: String, device: String, model: String, createdAt: Date, status: String) {
+        self.applicationID = applicationID
+        self.userID = userID
+        self.appcode = appcode
+        self.passcode = passcode
+        self.device = device
+        self.model = model
+        self.createdAt = createdAt
+        self.status = status
+    }
     
 }
 

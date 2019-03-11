@@ -23,6 +23,18 @@ final class Organisation: Model {
     var countryCode: String
     var status: String
     
+    ///Creates a new organisation
+    init(organisationID: Int? = nil, name: String, bossId: Int, createdAt: Date, updatedAt: Date? = nil, countryCode: String, status: String)
+    {
+        self.organisationID = organisationID
+        self.name = name
+        self.bossId = bossId
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.countryCode = countryCode
+        self.status = status
+    }
+    
 }
 
 extension Organisation: Content { }
