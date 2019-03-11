@@ -19,6 +19,20 @@ final class User: Model {
     var languageCode: String
     var status: String
     
+    /// Creates a new user.
+    init(userID: Int? = nil, email: String, password: String, firstname: String, surname: String, gravatarURL: String?, createdAt: Date, updatedAt: Date?, languageCode: String, status: String) {
+        self.userID = userID
+        self.email = email
+        self.password = password
+        self.firstname = firstname
+        self.surname = surname
+        self.gravatarURL = gravatarURL
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.languageCode = languageCode
+        self.status = status
+    }
+    
 }
 
 extension User: Content { }
