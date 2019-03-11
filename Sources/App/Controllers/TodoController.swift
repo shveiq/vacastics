@@ -1,5 +1,6 @@
 import Vapor
 
+/*
 /// Controls basic CRUD operations on `Todo`s.
 final class TodoController {
     /// Returns a list of all `Todo`s.
@@ -21,3 +22,4 @@ final class TodoController {
         }.transform(to: .ok)
     }
 }
+*/
