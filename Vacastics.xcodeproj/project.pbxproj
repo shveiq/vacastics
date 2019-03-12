@@ -27,6 +27,9 @@
 		046562102236ED770085AF2F /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465620F2236ED770085AF2F /* Employee.swift */; };
 		046562122236ED970085AF2F /* LeaveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046562112236ED970085AF2F /* LeaveType.swift */; };
 		046562142236EDA40085AF2F /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046562132236EDA40085AF2F /* Holiday.swift */; };
+		0465621722378C7D0085AF2F /* GeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465621622378C7D0085AF2F /* GeneralRequest.swift */; };
+		0465621922378C880085AF2F /* GeneralReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465621822378C880085AF2F /* GeneralReply.swift */; };
+		0465621B22378C980085AF2F /* GeneralSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465621A22378C980085AF2F /* GeneralSession.swift */; };
 		OBJ_1000 /* DatabaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "DatabaseKit::DatabaseKit::Product" /* DatabaseKit.framework */; };
 		OBJ_1001 /* Command.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Command::Product" /* Command.framework */; };
 		OBJ_1002 /* Console.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Console::Console::Product" /* Console.framework */; };
@@ -5245,6 +5248,9 @@
 		0465620F2236ED770085AF2F /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		046562112236ED970085AF2F /* LeaveType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveType.swift; sourceTree = "<group>"; };
 		046562132236EDA40085AF2F /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
+		0465621622378C7D0085AF2F /* GeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRequest.swift; sourceTree = "<group>"; };
+		0465621822378C880085AF2F /* GeneralReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralReply.swift; sourceTree = "<group>"; };
+		0465621A22378C980085AF2F /* GeneralSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSession.swift; sourceTree = "<group>"; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6905,6 +6911,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0465621522378C640085AF2F /* InOut */ = {
+			isa = PBXGroup;
+			children = (
+				0465621622378C7D0085AF2F /* GeneralRequest.swift */,
+				0465621822378C880085AF2F /* GeneralReply.swift */,
+				0465621A22378C980085AF2F /* GeneralSession.swift */,
+			);
+			path = InOut;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -6998,6 +7014,7 @@
 		OBJ_13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0465621522378C640085AF2F /* InOut */,
 				OBJ_14 /* User.swift */,
 				046562072236ED330085AF2F /* PublicHoliday.swift */,
 				0465620B2236ED570085AF2F /* Organisation.swift */,
@@ -7946,7 +7963,7 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -7956,7 +7973,6 @@
 				OBJ_23 /* Dependencies */,
 				OBJ_916 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_501 /* Responder */ = {
@@ -10886,7 +10902,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_916 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -12131,9 +12147,12 @@
 				OBJ_969 /* User.swift in Sources */,
 				046562102236ED770085AF2F /* Employee.swift in Sources */,
 				046562082236ED330085AF2F /* PublicHoliday.swift in Sources */,
+				0465621722378C7D0085AF2F /* GeneralRequest.swift in Sources */,
 				046562122236ED970085AF2F /* LeaveType.swift in Sources */,
 				OBJ_970 /* app.swift in Sources */,
 				OBJ_971 /* boot.swift in Sources */,
+				0465621B22378C980085AF2F /* GeneralSession.swift in Sources */,
+				0465621922378C880085AF2F /* GeneralReply.swift in Sources */,
 				0465620E2236ED620085AF2F /* Department.swift in Sources */,
 				OBJ_972 /* configure.swift in Sources */,
 				046562142236EDA40085AF2F /* Holiday.swift in Sources */,
