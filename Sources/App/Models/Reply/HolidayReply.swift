@@ -46,7 +46,7 @@ extension HolidayItemReply: Encodable {
     
 }
 
-struct HolidayReply {
+struct HolidayReplyData: Codable {
     
     var holidays: [HolidayItemReply]
     var totalRecords: Int
@@ -54,4 +54,34 @@ struct HolidayReply {
     
 }
 
-extension HolidayReply: Content {}
+struct HolidayReply: GenericResponseType {
+    typealias DataType = HolidayReplyData
+
+    var error: Error?
+    var reply: HolidayReplyData?
+    var session: GeneralSession?
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case error
+        case reply
+        case session
+    }
+}
+
+extension HolidayReply: Content {
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        //error = try values.decode(Error.self, forKey: .error)
+        reply = try values.decodeIfPresent(HolidayReplyData.self, forKey: .reply)
+        session = try values.decodeIfPresent(GeneralSession.self, forKey: .session)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        //try container.encodeIfPresent(error, forKey: .error)
+        try container.encodeIfPresent(reply, forKey: .reply)
+        try container.encodeIfPresent(session, forKey: .session)
+    }
+}
