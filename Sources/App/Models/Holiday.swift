@@ -23,10 +23,10 @@ final class Holiday: Model {
     var updatedAt: Date?
     var reason: String?
     var declineReason: String?
-    var status: String
+    var status: HolidayStatusType
     
     ///Creates a new holiday
-    init(holidayID: Int? = nil, leaveTypeID: Int, requestedByID: Int, actionerID: Int, createdAt: Date, updatedAt: Date? = nil, reason: String? = nil, declineReason: String? = nil, status: String)
+    init(holidayID: Int? = nil, leaveTypeID: Int, requestedByID: Int, actionerID: Int? = nil, createdAt: Date, updatedAt: Date? = nil, reason: String? = nil, declineReason: String? = nil, status: String)
     {
         self.holidayID = holidayID
         self.leaveTypeID = leaveTypeID
@@ -36,7 +36,47 @@ final class Holiday: Model {
         self.updatedAt = updatedAt
         self.reason = reason
         self.declineReason = declineReason
-        self.status = status
+        self.status = HolidayStatusType.init(rawValue: status) ?? .pending
+    }
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case holidayID
+        case leaveTypeID
+        case requestedByID
+        case actionerID
+        case createdAt
+        case updatedAt
+        case reason
+        case declineReason
+        case status
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        holidayID = try values.decode(Int.self, forKey: .holidayID)
+        leaveTypeID = try values.decode(Int.self, forKey: .leaveTypeID)
+        requestedByID = try values.decode(Int.self, forKey: .requestedByID)
+        actionerID = try values.decodeIfPresent(Int.self, forKey: .actionerID)
+        createdAt = try values.decode(Date.self, forKey: .createdAt)
+        updatedAt = try values.decodeIfPresent(Date.self, forKey: .updatedAt)
+        reason = try values.decodeIfPresent(String.self, forKey: .reason)
+        declineReason = try values.decodeIfPresent(String.self, forKey: .declineReason)
+        let statusStr = try values.decode(String.self, forKey: .status)
+        status = HolidayStatusType.init(rawValue: statusStr) ?? .pending
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(holidayID, forKey: .holidayID)
+        try container.encode(leaveTypeID, forKey: .leaveTypeID)
+        try container.encode(requestedByID, forKey: .requestedByID)
+        try container.encodeIfPresent(actionerID, forKey: .actionerID)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        try container.encodeIfPresent(reason, forKey: .reason)
+        try container.encodeIfPresent(declineReason, forKey: .declineReason)
+        try container.encode(status.rawValue, forKey: .status)
     }
     
 }
@@ -68,7 +108,7 @@ final class HolidayDuration: Model {
     var holidayDurationID: Int?
     var holidayID: Int
     var holidayDate: Date
-    var holidayDateType: String
+    var holidayDateType: HolidayDateType
     var employeeID: Int
 
     ///Creates a new leave type
@@ -77,8 +117,36 @@ final class HolidayDuration: Model {
         self.holidayDurationID = holidayDurationID
         self.holidayID = holidayID
         self.holidayDate = holidayDate
-        self.holidayDateType = holidayDateType
+        self.holidayDateType = HolidayDateType.init(rawValue: holidayDateType) ?? .morning
         self.employeeID = employeeID
+    }
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case holidayDurationID
+        case holidayID
+        case holidayDate
+        case holidayDateType
+        case employeeID
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        holidayDurationID = try values.decode(Int.self, forKey: .holidayDurationID)
+        holidayID = try values.decode(Int.self, forKey: .holidayID)
+        holidayDate = try values.decode(Date.self, forKey: .holidayDate)
+        let holidayDateTypeStr = try values.decode(String.self, forKey: .holidayDateType)
+        holidayDateType = HolidayDateType.init(rawValue: holidayDateTypeStr) ?? .morning
+        employeeID = try values.decode(Int.self, forKey: .employeeID)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(holidayDurationID, forKey: .holidayDurationID)
+        try container.encode(holidayID, forKey: .holidayID)
+        try container.encode(holidayDate, forKey: .holidayDate)
+        try container.encode(holidayDateType.rawValue, forKey: .holidayDateType)
+        try container.encode(employeeID, forKey: .employeeID)
     }
     
 }

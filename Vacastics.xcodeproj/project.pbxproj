@@ -21,6 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0413F28722383E9500497276 /* GeneralDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413F28622383E9500497276 /* GeneralDevice.swift */; };
+		0413F28B2238425400497276 /* HolidayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413F28A2238425400497276 /* HolidayController.swift */; };
+		0413F28E223842B900497276 /* HolidayReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413F28D223842B900497276 /* HolidayReply.swift */; };
+		0413F2912238435200497276 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413F2902238435200497276 /* enums.swift */; };
+		0413F294223846F800497276 /* HolidayRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413F293223846F800497276 /* HolidayRequest.swift */; };
 		046562082236ED330085AF2F /* PublicHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046562072236ED330085AF2F /* PublicHoliday.swift */; };
 		0465620C2236ED570085AF2F /* Organisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465620B2236ED570085AF2F /* Organisation.swift */; };
 		0465620E2236ED620085AF2F /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465620D2236ED620085AF2F /* Department.swift */; };
@@ -5242,6 +5247,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0413F28622383E9500497276 /* GeneralDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralDevice.swift; sourceTree = "<group>"; };
+		0413F28A2238425400497276 /* HolidayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayController.swift; sourceTree = "<group>"; };
+		0413F28D223842B900497276 /* HolidayReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayReply.swift; sourceTree = "<group>"; };
+		0413F2902238435200497276 /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
+		0413F293223846F800497276 /* HolidayRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayRequest.swift; sourceTree = "<group>"; };
 		046562072236ED330085AF2F /* PublicHoliday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHoliday.swift; sourceTree = "<group>"; };
 		0465620B2236ED570085AF2F /* Organisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organisation.swift; sourceTree = "<group>"; };
 		0465620D2236ED620085AF2F /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
@@ -6911,12 +6921,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0413F28C223842A500497276 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				0413F28D223842B900497276 /* HolidayReply.swift */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
+		0413F292223846EE00497276 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				0413F293223846F800497276 /* HolidayRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		0465621522378C640085AF2F /* InOut */ = {
 			isa = PBXGroup;
 			children = (
 				0465621622378C7D0085AF2F /* GeneralRequest.swift */,
 				0465621822378C880085AF2F /* GeneralReply.swift */,
 				0465621A22378C980085AF2F /* GeneralSession.swift */,
+				0413F28622383E9500497276 /* GeneralDevice.swift */,
 			);
 			path = InOut;
 			sourceTree = "<group>";
@@ -6930,6 +6957,7 @@
 				OBJ_16 /* boot.swift */,
 				OBJ_17 /* configure.swift */,
 				OBJ_18 /* routes.swift */,
+				0413F2902238435200497276 /* enums.swift */,
 			);
 			name = App;
 			path = Sources/App;
@@ -6939,6 +6967,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_12 /* TodoController.swift */,
+				0413F28A2238425400497276 /* HolidayController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -7014,6 +7043,8 @@
 		OBJ_13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0413F292223846EE00497276 /* Request */,
+				0413F28C223842A500497276 /* Reply */,
 				0465621522378C640085AF2F /* InOut */,
 				OBJ_14 /* User.swift */,
 				046562072236ED330085AF2F /* PublicHoliday.swift */,
@@ -12148,15 +12179,20 @@
 				046562102236ED770085AF2F /* Employee.swift in Sources */,
 				046562082236ED330085AF2F /* PublicHoliday.swift in Sources */,
 				0465621722378C7D0085AF2F /* GeneralRequest.swift in Sources */,
+				0413F294223846F800497276 /* HolidayRequest.swift in Sources */,
 				046562122236ED970085AF2F /* LeaveType.swift in Sources */,
+				0413F28E223842B900497276 /* HolidayReply.swift in Sources */,
 				OBJ_970 /* app.swift in Sources */,
 				OBJ_971 /* boot.swift in Sources */,
 				0465621B22378C980085AF2F /* GeneralSession.swift in Sources */,
 				0465621922378C880085AF2F /* GeneralReply.swift in Sources */,
 				0465620E2236ED620085AF2F /* Department.swift in Sources */,
+				0413F28722383E9500497276 /* GeneralDevice.swift in Sources */,
+				0413F2912238435200497276 /* enums.swift in Sources */,
 				OBJ_972 /* configure.swift in Sources */,
 				046562142236EDA40085AF2F /* Holiday.swift in Sources */,
 				OBJ_973 /* routes.swift in Sources */,
+				0413F28B2238425400497276 /* HolidayController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

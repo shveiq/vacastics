@@ -26,4 +26,9 @@ public func routes(_ router: Router) throws {
     router.get("sql2") { req in
         return User.query(on: req).all()
     }
+    
+    // Example of configuring a controller
+    let holidayController = HolidayController()
+    router.post("holidays", use: holidayController.index)
+//    router.delete("todos", Todo.parameter, use: todoController.delete)
 }

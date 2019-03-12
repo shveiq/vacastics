@@ -22,7 +22,7 @@ final class Employee: Model {
     var updatedAt: Date?
     var startDate: Date
     var endDate: Date?
-    var status: String
+    var status: EmployeeStatusType
     
     ///Creates a new employee
     init(employeeID: Int? = nil, userID: Int, departmentID: Int, createdAt: Date, updatedAt: Date? = nil, startDate: Date, endDate: Date? = nil, status: String)
@@ -34,7 +34,44 @@ final class Employee: Model {
         self.updatedAt = updatedAt
         self.startDate = startDate
         self.endDate = endDate
-        self.status = status
+        self.status = EmployeeStatusType.init(rawValue: status) ?? .deleted
+    }
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case employeeID
+        case userID
+        case departmentID
+        case createdAt
+        case updatedAt
+        case startDate
+        case endDate
+        case status
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        employeeID = try values.decode(Int.self, forKey: .employeeID)
+        departmentID = try values.decode(Int.self, forKey: .departmentID)
+        userID = try values.decode(Int.self, forKey: .userID)
+        createdAt = try values.decode(Date.self, forKey: .createdAt)
+        updatedAt = try values.decodeIfPresent(Date.self, forKey: .updatedAt)
+        startDate = try values.decode(Date.self, forKey: .startDate)
+        endDate = try values.decodeIfPresent(Date.self, forKey: .endDate)
+        let statusStr = try values.decode(String.self, forKey: .status)
+        status = EmployeeStatusType.init(rawValue: statusStr) ?? .deleted
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(employeeID, forKey: .employeeID)
+        try container.encode(userID, forKey: .userID)
+        try container.encode(departmentID, forKey: .departmentID)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        try container.encode(startDate, forKey: .startDate)
+        try container.encodeIfPresent(endDate, forKey: .endDate)
+        try container.encode(status.rawValue, forKey: .status)
     }
     
 }

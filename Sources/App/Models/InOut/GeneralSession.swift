@@ -17,4 +17,10 @@ public struct GeneralSession: Codable {
         self.lifeTime = lifeTime
     }
     
+    enum CodingKeys: String, CodingKey
+    {
+        case sessionId = "session_id"
+        case lifeTime = "life_time"
+    }
+    
 }

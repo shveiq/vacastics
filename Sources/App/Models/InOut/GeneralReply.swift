@@ -51,6 +51,7 @@ public protocol GenericResponseType {
     var error: Error? { get }
     var reply: DataType? { get }
     var session: GeneralSession? { get }
+    
 }
 
 public struct GeneralReply<ResponseType: GenericResponseType> {
@@ -67,4 +68,5 @@ public struct GeneralReply<ResponseType: GenericResponseType> {
         self.statusCode = statusCode ?? -1
         self.result = result
     }
+    
 }

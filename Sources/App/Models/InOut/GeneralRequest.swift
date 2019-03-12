@@ -10,8 +10,10 @@ import Foundation
 public protocol GenericRequestType {
     associatedtype DataType
     
-    var request: DataType? { get set }
+    var device: GeneralDevice { get set }
+    var request: DataType { get set }
     var session: GeneralSession? { get set }
+    
 }
 
 public struct GeneralRequest<RequestType: GenericRequestType> {
