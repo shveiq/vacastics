@@ -41,6 +41,21 @@ final class Holiday: Model {
     
 }
 
+extension Holiday {
+    var requestedBy: Parent<Holiday, Employee> {
+        return parent(\Holiday.requestedByID)
+    }
+    var actioner: Parent<Holiday, Employee>? {
+        return parent(\Holiday.actionerID)
+    }
+    var leaveType: Parent<Holiday, LeaveType> {
+        return parent(\Holiday.leaveTypeID)
+    }
+    var durations: Children<Holiday, HolidayDuration> {
+        return children(\HolidayDuration.holidayID)
+    }
+}
+
 extension Holiday: Content { }
 
 final class HolidayDuration: Model {
@@ -66,6 +81,15 @@ final class HolidayDuration: Model {
         self.employeeID = employeeID
     }
     
+}
+
+extension HolidayDuration {
+    var holiday: Parent<HolidayDuration, Holiday> {
+        return parent(\HolidayDuration.holidayID)
+    }
+    var employee: Parent<HolidayDuration, Employee> {
+        return parent(\HolidayDuration.employeeID)
+    }
 }
 
 extension HolidayDuration: Content { }

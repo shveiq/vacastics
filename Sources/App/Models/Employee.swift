@@ -39,6 +39,21 @@ final class Employee: Model {
     
 }
 
+extension Employee {
+    var user: Parent<Employee, User> {
+        return parent(\Employee.userID)
+    }
+    var department: Parent<Employee, Department> {
+        return parent(\Employee.departmentID)
+    }
+    var allowances: Children<Employee, EmployeeAllowance> {
+        return children(\EmployeeAllowance.employeeID)
+    }
+    var workdays: Children<Employee, EmployeeWorkday> {
+        return children(\EmployeeWorkday.employeeID)
+    }
+}
+
 extension Employee: Content { }
 
 final class EmployeeAllowance: Model {
@@ -66,6 +81,12 @@ final class EmployeeAllowance: Model {
         self.used = used
     }
     
+}
+
+extension EmployeeAllowance {
+    var employee: Parent<EmployeeAllowance, Employee> {
+        return parent(\EmployeeAllowance.employeeID)
+    }
 }
 
 extension EmployeeAllowance: Content { }
@@ -99,6 +120,12 @@ final class EmployeeWorkday: Model {
         self.working = working
     }
 
+}
+
+extension EmployeeWorkday {
+    var employee: Parent<EmployeeWorkday, Employee> {
+        return parent(\EmployeeWorkday.employeeID)
+    }
 }
 
 extension EmployeeWorkday: Content { }

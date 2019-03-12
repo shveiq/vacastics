@@ -32,7 +32,12 @@ final class User: Model {
         self.languageCode = languageCode
         self.status = status
     }
-    
+}
+
+extension User {
+    var organizations: Children<User, Organisation> {
+        return children(\Organisation.bossID)
+    }
 }
 
 extension User: Content { }
@@ -66,6 +71,12 @@ final class UserApplication: Model {
         self.status = status
     }
     
+}
+
+extension UserApplication {
+    var user: Parent<UserApplication, User> {
+        return parent(\UserApplication.userID)
+    }
 }
 
 extension UserApplication: Content { }

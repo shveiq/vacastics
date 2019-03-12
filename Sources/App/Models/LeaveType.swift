@@ -37,4 +37,10 @@ final class LeaveType: Model {
     
 }
 
+extension LeaveType {
+    var organisation: Parent<LeaveType, Organisation> {
+        return parent(\LeaveType.organisationID)
+    }
+}
+
 extension LeaveType: Content { }
