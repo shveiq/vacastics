@@ -10,10 +10,10 @@ import Foundation
 public protocol GenericResponseType {
     associatedtype DataType
     
-    var error: Bool? { get }
-    var reason: String? { get }
-    var reply: DataType { get }
-    var session: GeneralSession? { get }
+    var error: Bool? { get set }
+    var reason: String? { get set }
+    var reply: DataType? { get set }
+    var session: GeneralSession? { get set }
     
 }
 
