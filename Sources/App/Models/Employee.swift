@@ -137,26 +137,64 @@ final class EmployeeWorkday: Model {
     
     var workDayID: Int?
     var employeeID: Int
-    var dayOfWeek: String
+    var dayOfWeek: WorkDayType
     var fromTimeAM: Int
     var toTimeAM: Int
     var fromTimePM: Int
     var toTimePM: Int
-    var working: String
+    var working: WorkingType
 
     ///Creates a new employee workday
     init(workDayID: Int? = nil, employeeID: Int, dayOfWeek: String, fromTimeAM: Int, toTimeAM: Int, fromTimePM:Int, toTimePM: Int, working: String)
     {
         self.workDayID = workDayID
         self.employeeID = employeeID
-        self.dayOfWeek = dayOfWeek
+        self.dayOfWeek = WorkDayType.init(rawValue: dayOfWeek) ?? .monday
         self.fromTimeAM = fromTimeAM
         self.toTimeAM = toTimeAM
         self.fromTimePM = fromTimePM
         self.toTimePM = toTimePM
-        self.working = working
+        self.working = WorkingType.init(rawValue: working) ?? .none
     }
 
+    enum CodingKeys: String, CodingKey
+    {
+        case workDayID
+        case employeeID
+        case dayOfWeek
+        case fromTimeAM
+        case toTimeAM
+        case fromTimePM
+        case toTimePM
+        case working
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        workDayID = try values.decode(Int.self, forKey: .workDayID)
+        employeeID = try values.decode(Int.self, forKey: .employeeID)
+        let dayStr = try values.decode(String.self, forKey: .dayOfWeek)
+        self.dayOfWeek = WorkDayType.init(rawValue: dayStr) ?? .monday
+        fromTimeAM = try values.decode(Int.self, forKey: .fromTimeAM)
+        toTimeAM = try values.decode(Int.self, forKey: .toTimeAM)
+        fromTimePM = try values.decode(Int.self, forKey: .fromTimePM)
+        toTimePM = try values.decode(Int.self, forKey: .toTimePM)
+        let workingStr =  try values.decode(String.self, forKey: .working)
+        working = WorkingType.init(rawValue: workingStr) ?? .none
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(workDayID, forKey: .workDayID)
+        try container.encode(employeeID, forKey: .employeeID)
+        try container.encode(dayOfWeek.rawValue, forKey: .dayOfWeek)
+        try container.encode(fromTimeAM, forKey: .fromTimeAM)
+        try container.encode(toTimeAM, forKey: .toTimeAM)
+        try container.encode(fromTimePM, forKey: .fromTimePM)
+        try container.encode(toTimePM, forKey: .toTimePM)
+        try container.encode(working.rawValue, forKey: .working)
+    }
+    
 }
 
 extension EmployeeWorkday {

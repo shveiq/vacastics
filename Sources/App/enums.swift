@@ -49,4 +49,19 @@ public enum HolidayStatusType: String {
     case declined = "DECLINED"
 }
 
+public enum WorkDayType: String {
+    case monday = "MONDAY"
+    case tuesday = "TUESDAY"
+    case wednesday = "WEDNESDAY"
+    case thursday = "THURSDAY"
+    case friday = "FRIDAY"
+    case saturday = "SATURDAY"
+    case sunday = "SUNDAY"
+}
 
+public enum WorkingType: String {
+    case none = ""
+    case am = "AM"
+    case pm = "PM"
+    case am_pm = "AMPM"
+}

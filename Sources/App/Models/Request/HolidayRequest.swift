@@ -5,7 +5,7 @@
 //  Created by Pawel Szenk on 12/03/2019.
 //
 
-import Foundation
+import Vapor
 
 struct HolidayRequestData: Decodable {
 
@@ -27,8 +27,15 @@ struct HolidayRequest: GenericRequestType {
     var device: GeneralDevice
     var request: HolidayRequestData
     var session: GeneralSession?
+    
 }
 
-extension HolidayRequest: Decodable {
-    
+extension HolidayRequest: Decodable { }
+
+extension HolidayRequest: RequestDecodable {
+    static func decode(from req: Request) throws -> EventLoopFuture<HolidayRequest> {
+        return try req.content.decode(HolidayRequest.self).map { item in
+            return item
+        }
+    }
 }
