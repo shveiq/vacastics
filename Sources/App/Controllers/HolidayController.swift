@@ -20,7 +20,7 @@ final class HolidayController {
     func index2(_ req:Request, _ holidayRequest: HolidayRequest) throws -> Future<HolidayReply> {
         
         print(holidayRequest)
-        //throw VaporError.init(identifier: "tatatat", reason: "trururur")
+        throw VaporError.init(identifier: "tatatat", reason: "trururur")
         
         let item = HolidayItemReply(id: 1, startDate: Date(), startType: "MORNING")
         let replyData = HolidayReplyData(holidays: [item], totalRecords: 1, pageNumber: 1)

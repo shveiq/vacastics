@@ -14,9 +14,14 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     // Register middleware
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
     // middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
+    middlewares.use(RequestMiddleware())
+    middlewares.use(HMACMiddleware())
+    middlewares.use(SessionMiddleware())
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
     services.register(middlewares)
 
+    //services.register(RequestMiddleware.self)
+    
     // Configure a MySQL database
     //let mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .unverifiedTLS))
     let mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "apki.mobi", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .cleartext))

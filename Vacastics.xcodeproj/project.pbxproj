@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		04FC11EB22395E8A0038247A /* RequestMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC11EA22395E8A0038247A /* RequestMiddleware.swift */; };
+		04FC11ED223967740038247A /* HMACMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC11EC223967740038247A /* HMACMiddleware.swift */; };
+		04FC11EF2239678C0038247A /* SessionMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC11EE2239678C0038247A /* SessionMiddleware.swift */; };
+		04FC11F122396FB90038247A /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC11F022396FB90038247A /* AppSession.swift */; };
 		OBJ_1000 /* app.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* app.swift */; };
 		OBJ_1001 /* boot.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* boot.swift */; };
 		OBJ_1002 /* configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* configure.swift */; };
@@ -5247,6 +5251,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04FC11EA22395E8A0038247A /* RequestMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMiddleware.swift; sourceTree = "<group>"; };
+		04FC11EC223967740038247A /* HMACMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMACMiddleware.swift; sourceTree = "<group>"; };
+		04FC11EE2239678C0038247A /* SessionMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionMiddleware.swift; sourceTree = "<group>"; };
+		04FC11F022396FB90038247A /* AppSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSession.swift; sourceTree = "<group>"; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6921,9 +6929,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04FC11E922395E6E0038247A /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				04FC11EA22395E8A0038247A /* RequestMiddleware.swift */,
+				04FC11EC223967740038247A /* HMACMiddleware.swift */,
+				04FC11EE2239678C0038247A /* SessionMiddleware.swift */,
+			);
+			path = Middleware;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				04FC11E922395E6E0038247A /* Middleware */,
 				OBJ_11 /* Controllers */,
 				OBJ_14 /* Models */,
 				OBJ_31 /* app.swift */,
@@ -7024,6 +7043,7 @@
 				OBJ_24 /* Organisation.swift */,
 				OBJ_25 /* PublicHoliday.swift */,
 				OBJ_30 /* User.swift */,
+				04FC11F022396FB90038247A /* AppSession.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -12174,17 +12194,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				04FC11F122396FB90038247A /* AppSession.swift in Sources */,
+				04FC11EB22395E8A0038247A /* RequestMiddleware.swift in Sources */,
 				OBJ_985 /* HolidayController.swift in Sources */,
 				OBJ_986 /* TodoController.swift in Sources */,
 				OBJ_987 /* Department.swift in Sources */,
 				OBJ_988 /* Employee.swift in Sources */,
 				OBJ_989 /* Holiday.swift in Sources */,
+				04FC11EF2239678C0038247A /* SessionMiddleware.swift in Sources */,
 				OBJ_990 /* GeneralDevice.swift in Sources */,
 				OBJ_991 /* GenericResponseType.swift in Sources */,
 				OBJ_992 /* GenericRequestType.swift in Sources */,
 				OBJ_993 /* GeneralSession.swift in Sources */,
 				OBJ_994 /* LeaveType.swift in Sources */,
 				OBJ_995 /* Organisation.swift in Sources */,
+				04FC11ED223967740038247A /* HMACMiddleware.swift in Sources */,
 				OBJ_996 /* PublicHoliday.swift in Sources */,
 				OBJ_997 /* HolidayReply.swift in Sources */,
 				OBJ_998 /* HolidayRequest.swift in Sources */,
