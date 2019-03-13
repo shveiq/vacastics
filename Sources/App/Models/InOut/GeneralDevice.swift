@@ -66,3 +66,18 @@ extension GeneralDevice: Decodable {
     }
     
 }
+
+extension GeneralDevice: Encodable {
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(system.rawValue, forKey: .system)
+        try container.encodeIfPresent(userAgent, forKey: .userAgent)
+        try container.encodeIfPresent(appId, forKey: .appId)
+        try container.encodeIfPresent(device, forKey: .device)
+        try container.encodeIfPresent(model, forKey: .model)
+        try container.encodeIfPresent(version, forKey: .version)
+        try container.encodeIfPresent(systemVersion, forKey: .systemVersion)
+    }
+    
+}

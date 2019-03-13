@@ -7,7 +7,7 @@
 
 import Vapor
 
-struct HolidayRequestData: Decodable {
+struct HolidayRequestData: Codable {
 
     var departmentID: Int?
     var userIDs: [Int]?
@@ -30,7 +30,7 @@ struct HolidayRequest: GenericRequestType {
     
 }
 
-extension HolidayRequest: Decodable { }
+extension HolidayRequest: Codable { }
 
 extension HolidayRequest: RequestDecodable {
     static func decode(from req: Request) throws -> EventLoopFuture<HolidayRequest> {

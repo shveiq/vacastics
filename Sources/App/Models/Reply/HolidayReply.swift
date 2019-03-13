@@ -7,7 +7,7 @@
 
 import Vapor
 
-struct HolidayItemReply: Decodable {
+struct HolidayItemReply {
     var id: Int
     var startDate: Date
     var startType: HolidayDateType
@@ -18,6 +18,16 @@ struct HolidayItemReply: Decodable {
         case startDate = "start_date"
         case startType = "start_type"
     }
+
+    init(id: Int, startDate: Date, startType: String) {
+        self.id = id
+        self.startDate = startDate
+        self.startType = HolidayDateType.init(rawValue: startType) ?? .morning
+    }
+
+}
+
+extension HolidayItemReply: Decodable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -25,12 +35,6 @@ struct HolidayItemReply: Decodable {
         startDate = try values.decode(Date.self, forKey: .startDate)
         let startTypeStr = try values.decode(String.self, forKey: .startType)
         startType = HolidayDateType.init(rawValue: startTypeStr) ?? .morning
-    }
-    
-    init(id: Int, startDate: Date, startType: String) {
-        self.id = id
-        self.startDate = startDate
-        self.startType = HolidayDateType.init(rawValue: startType) ?? .morning
     }
     
 }
@@ -61,14 +65,9 @@ struct HolidayReply: GenericResponseType {
     var reason: String?
     var reply: HolidayReplyData
     var session: GeneralSession?
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case error
-        case reason
-        case reply
-        case session
-    }
+
 }
+
+extension HolidayReply: Codable { }
 
 extension HolidayReply: Content { }
