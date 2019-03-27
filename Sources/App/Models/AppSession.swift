@@ -9,7 +9,7 @@ import FluentSQLite
 import Vapor
 
 final class AppSession: Model {
-    typealias Database = SQLiteDatabsase
+    typealias Database = SQLiteDatabase
     typealias ID = UUID
 
     public static var idKey: IDKey = \AppSession.sessionID
@@ -24,3 +24,7 @@ final class AppSession: Model {
     }
     
 }
+
+extension AppSession: Content { }
+
+extension AppSession: SQLiteMigration { }
