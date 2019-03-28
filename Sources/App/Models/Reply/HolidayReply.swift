@@ -56,6 +56,12 @@ struct HolidayReply: Codable {
     var totalRecords: Int
     var pageNumber: Int
     
+    enum CodingKeys: String, CodingKey
+    {
+        case holidays
+        case totalRecords = "total_records"
+        case pageNumber = "page_number"
+    }
 }
 
 extension HolidayReply: Content { }

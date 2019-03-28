@@ -14,8 +14,11 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(router, as: Router.self)
 
     services.register(SessionMiddleware.self)
-    services.register(OwnSessionCache.self)
 
+    // Register cache
+    services.register(OwnSessionCache.self)
+    services.register(AuthenticateCache.self)
+    
     // Register middleware
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
     // middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
