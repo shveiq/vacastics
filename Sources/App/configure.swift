@@ -13,22 +13,34 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     try routes(router)
     services.register(router, as: Router.self)
 
+    services.register(SessionMiddleware.self)
+    services.register(OwnSessionCache.self)
+
     // Register middleware
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
     // middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
     middlewares.use(RequestMiddleware())
     middlewares.use(HMACMiddleware())
-    middlewares.use(SessionMiddleware())
+    middlewares.use(SessionMiddleware.self)
+    middlewares.use(DeviceMiddleware())
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
     services.register(middlewares)
 
     //services.register(RequestMiddleware.self)
-    
-    let sqlite = try SQLiteDatabase(storage: .memory)
+    let sqlite:SQLiteDatabase
+    if env.isRelease {
+        sqlite = try SQLiteDatabase(storage: .file(path: "session.db"))
+    } else {
+        sqlite = try SQLiteDatabase(storage: .memory)
+    }
     
     // Configure a MySQL database
-    //let mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .unverifiedTLS))
-    let mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "apki.mobi", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .cleartext))
+    let mysql:MySQLDatabase
+    if env.isRelease {
+        mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "apki.mobi", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .cleartext))
+    } else {
+        mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .unverifiedTLS))
+    }
 
     // Register the configured MySQL database to the database config.
     var databases = DatabasesConfig()
@@ -48,7 +60,6 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     EmployeeAllowance.defaultDatabase = .mysql
     EmployeeWorkday.defaultDatabase = .mysql
     
-    var migrations = MigrationConfig()
-    migrations.add(model: AppSession.self, database: .sqlite)
-    services.register(migrations)
+    config.prefer(MemoryKeyedCache.self, for: KeyedCache.self)
+    
 }

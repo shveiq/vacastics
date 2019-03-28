@@ -7,7 +7,7 @@
 
 import Vapor
 
-struct HolidayRequestData: Codable {
+struct HolidayRequest: Codable {
 
     var departmentID: Int?
     var userIDs: [Int]?
@@ -19,40 +19,6 @@ struct HolidayRequestData: Codable {
     var approverID: Int?
     var pageNumber: Int?
 
-}
-
-struct HolidayRequest: GenericRequestType {
-    typealias DataType = HolidayRequestData
-
-    var device: GeneralDevice
-    var request: HolidayRequestData
-    var session: GeneralSession?
-    
-}
-
-extension HolidayRequest: Codable {
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case device
-        case request
-        case session
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        device = try values.decode(GeneralDevice.self, forKey: .device)
-        request = try values.decode(HolidayRequestData.self, forKey: .request)
-        session = try values.decodeIfPresent(GeneralSession.self, forKey: .session)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(device, forKey: .device)
-        try container.encode(request, forKey: .request)
-        try container.encodeIfPresent(session, forKey: .session)
-    }
-    
 }
 
 extension HolidayRequest: RequestDecodable {

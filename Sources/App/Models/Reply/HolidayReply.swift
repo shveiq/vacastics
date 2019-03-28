@@ -50,49 +50,11 @@ extension HolidayItemReply: Encodable {
     
 }
 
-struct HolidayReplyData: Codable {
+struct HolidayReply: Codable {
     
     var holidays: [HolidayItemReply]
     var totalRecords: Int
     var pageNumber: Int
-    
-}
-
-struct HolidayReply: GenericResponseType {
-    typealias DataType = HolidayReplyData
-
-    var error: Bool?
-    var reason: String?
-    var reply: HolidayReplyData?
-    var session: GeneralSession?
-
-}
-
-extension HolidayReply: Codable {
-    
-    enum CodingKeys: String, CodingKey
-    {
-        case error
-        case reason
-        case reply
-        case session
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        error = try values.decodeIfPresent(Bool.self, forKey: .error)
-        reason = try values.decodeIfPresent(String.self, forKey: .reason)
-        reply = try values.decodeIfPresent(HolidayReplyData.self, forKey: .reply)
-        session = try values.decodeIfPresent(GeneralSession.self, forKey: .session)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(error, forKey: .error)
-        try container.encodeIfPresent(reason, forKey: .reason)
-        try container.encodeIfPresent(reply, forKey: .reply)
-        try container.encodeIfPresent(session, forKey: .session)
-    }
     
 }
 

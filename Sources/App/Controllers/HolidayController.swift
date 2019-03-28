@@ -12,8 +12,7 @@ final class HolidayController {
     func index(_ req: Request) throws -> Future<HolidayReply> {
         return try req.content.decode(HolidayRequest.self).map { _ in
             let item = HolidayItemReply(id: 1, startDate: Date(), startType: "MORNING")
-            let reply = HolidayReplyData(holidays: [item], totalRecords: 1, pageNumber: 1)
-            return HolidayReply(error: nil, reason: nil, reply: reply, session: nil)
+            return HolidayReply(holidays: [item], totalRecords: 1, pageNumber: 1)
         }
     }
     
@@ -23,8 +22,7 @@ final class HolidayController {
         throw VaporError.init(identifier: "tatatat", reason: "trururur")
         
         let item = HolidayItemReply(id: 1, startDate: Date(), startType: "MORNING")
-        let replyData = HolidayReplyData(holidays: [item], totalRecords: 1, pageNumber: 1)
-        let reply = HolidayReply(error: nil, reason: nil, reply: replyData, session: nil)
+        let reply = HolidayReply(holidays: [item], totalRecords: 1, pageNumber: 1)
         return req.next().newSucceededFuture(result: reply)
     }
 
