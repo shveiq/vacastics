@@ -7,6 +7,25 @@
 
 import Vapor
 
+internal final class OwnSessionCache: ServiceType {
+    /// See `ServiceType`.
+    static func makeService(for worker: Container) throws -> OwnSessionCache {
+        return .init()
+    }
+    
+    /// Set to `true` when passing through middleware.
+    var middlewareFlag: Bool
+    
+    /// The cached session.
+    var session: Session?
+    
+    /// Creates a new `SessionCache`.
+    init(session: Session? = nil) {
+        self.session = session
+        self.middlewareFlag = false
+    }
+}
+
 extension Request {
     
     public func appSession() throws -> Session {
@@ -51,99 +70,3 @@ extension Request {
     }
     
 }
-
-
-/*
-public protocol Authenticatable { }
-
-final class AuthenticationCache: Service {
-    /// The internal storage.
-    private var storage: [ObjectIdentifier: Any]
-    
-    /// Create a new authentication cache.
-    init() {
-        self.storage = [:]
-    }
-    
-    /// Access the cache using types.
-    internal subscript<A>(_ type: A.Type) -> A?
-        where A: Authenticatable
-    {
-        get { return storage[ObjectIdentifier(A.self)] as? A }
-        set { storage[ObjectIdentifier(A.self)] = newValue }
-    }
-}
-
-/// Errors that can be thrown while working with Authentication.
-public struct AuthenticationError: Debuggable {
-    /// See Debuggable.readableName
-    public static let readableName = "Authentication Error"
-    
-    /// See Debuggable.reason
-    public let identifier: String
-    
-    /// See Debuggable.reason
-    public var reason: String
-    
-    /// See Debuggable.sourceLocation
-    public var sourceLocation: SourceLocation?
-    
-    /// See stackTrace
-    public var stackTrace: [String]
-    
-    /// Create a new authentication error.
-    init(
-        identifier: String,
-        reason: String,
-        source: SourceLocation
-        ) {
-        self.identifier = identifier
-        self.reason = reason
-        self.sourceLocation = source
-        self.stackTrace = AuthenticationError.makeStackTrace()
-    }
-}
-
-extension AuthenticationError: AbortError {
-    /// See AbortError.status
-    public var status: HTTPStatus {
-        return .unauthorized
-    }
-}
-
-extension Request {
-    
-    public func authenticate<A>(_ instance: A) throws
-        where A: Authenticatable
-    {
-        let cache = try privateContainer.make(AuthenticationCache.self)
-        cache[A.self] = instance
-    }
-    
-    public func authenticated<A>(_ type: A.Type = A.self) throws -> A?
-        where A: Authenticatable
-    {
-        let cache = try privateContainer.make(AuthenticationCache.self)
-        return cache[A.self]
-    }
-    
-    public func isAuthenticated<A>(_ type: A.Type = A.self) throws -> Bool
-        where A: Authenticatable
-    {
-        return try authenticated(A.self) != nil
-    }
-    
-    public func requiredAuthenticated<A>(_ type: A.Type = A.self) throws -> A
-        where A: Authenticatable
-    {
-        guard let a = try authenticated(A.self) else {
-            throw AuthenticationError(
-                identifier: "notAuthenticated",
-                reason: "\(A.self) has not been authenticated.",
-                source: .capture()
-            )
-        }
-        return a
-    }
-}
-*/

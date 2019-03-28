@@ -23,7 +23,19 @@ final class AuthController {
         return req.withPooledConnection(to: .mysql) { conn in
             return User.query(on: conn).filter(\User.email, .equal, loginRequest.email).first()
             }.map { user in
-                return LoginCommitReply(user: user!)
+                if let user = user {
+                    if user.password == loginRequest.password {
+                        try req.authenticate(user)
+                        return LoginCommitReply(user: user)
+                    }
+                }
+                
+                throw AuthenticationError(
+                    identifier: "notAuthenticated",
+                    reason: "Has not been authenticated.",
+                    source: .capture()
+                )
+                
             }
     }
 }

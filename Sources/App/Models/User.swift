@@ -1,12 +1,12 @@
 import FluentMySQL
 import Vapor
 
-final class User: Model {
-    typealias Database = MySQLDatabase
-    typealias ID = Int
+public final class User: Model {
+    public typealias Database = MySQLDatabase
+    public typealias ID = Int
     
     public static var idKey: IDKey = \User.userID
-    static let entity = "user"
+    public static let entity = "user"
     
     var userID: Int?
     var email: String
@@ -20,7 +20,7 @@ final class User: Model {
     var status: UserStatusType
     
     /// Creates a new user.
-    init(userID: Int? = nil, email: String, password: String, firstname: String, surname: String, gravatarURL: String? = nil, createdAt: Date, updatedAt: Date? = nil, languageCode: String, status: String) {
+    public init(userID: Int? = nil, email: String, password: String, firstname: String, surname: String, gravatarURL: String? = nil, createdAt: Date, updatedAt: Date? = nil, languageCode: String, status: String) {
         self.userID = userID
         self.email = email
         self.password = password
@@ -47,7 +47,7 @@ final class User: Model {
         case status
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         userID = try values.decode(Int.self, forKey: .userID)
         email = try values.decode(String.self, forKey: .email)

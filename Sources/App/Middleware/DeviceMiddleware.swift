@@ -30,8 +30,8 @@ public final class DeviceMiddleware: Middleware {
         }
         
         let userAgent: String?
-        if req.http.headers.contains(name: "X-User-Agent") {
-            let x = req.http.headers["X-User-Agent"]
+        if req.http.headers.contains(name: "User-Agent") {
+            let x = req.http.headers["User-Agent"]
             userAgent = x.first
         } else {
             userAgent = nil
@@ -54,8 +54,8 @@ public final class DeviceMiddleware: Middleware {
         }
 
         let model: String?
-        if req.http.headers.contains(name: "X-Model-ID") {
-            let x = req.http.headers["X-Model-ID"]
+        if req.http.headers.contains(name: "X-Device-Model") {
+            let x = req.http.headers["X-Device-Model"]
             model = x.first
         } else {
             model = nil

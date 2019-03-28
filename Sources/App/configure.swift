@@ -36,7 +36,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     // Configure a MySQL database
     let mysql:MySQLDatabase
-    if env.isRelease {
+    if !env.isRelease {
         mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "apki.mobi", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .cleartext))
     } else {
         mysql = MySQLDatabase(config: MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "domomat_vacdevel", password: "qyfrim-1vuqvi-seQcex", database: "domomat_vacdevel", capabilities: .default, characterSet: .utf8_general_ci, transport: .unverifiedTLS))

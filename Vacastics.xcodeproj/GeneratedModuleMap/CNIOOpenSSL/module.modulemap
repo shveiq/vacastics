@@ -1,4 +1,4 @@
 module CNIOOpenSSL {
-    umbrella "/Users/shveiq/Projects/Test/vacastics/.build/checkouts/swift-nio-ssl.git-8868719950902807229/Sources/CNIOOpenSSL/include"
+    umbrella "/Users/shveiq/Desktop/Apki.Mobi/Vacastics/BACKEND/vacastics/.build/checkouts/swift-nio-ssl.git-6908208680211451146/Sources/CNIOOpenSSL/include"
     export *
 }

@@ -7,25 +7,6 @@
 
 import Vapor
 
-internal final class OwnSessionCache: ServiceType {
-    /// See `ServiceType`.
-    static func makeService(for worker: Container) throws -> OwnSessionCache {
-        return .init()
-    }
-    
-    /// Set to `true` when passing through middleware.
-    var middlewareFlag: Bool
-    
-    /// The cached session.
-    var session: Session?
-    
-    /// Creates a new `SessionCache`.
-    init(session: Session? = nil) {
-        self.session = session
-        self.middlewareFlag = false
-    }
-}
-
 public final class SessionMiddleware: Middleware, ServiceType {
     
     public static func makeService(for container: Container) throws -> Self {
