@@ -23,6 +23,10 @@
 /* Begin PBXBuildFile section */
 		045AD7B0224CD15000DDCD89 /* DeviceMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AD7AF224CD15000DDCD89 /* DeviceMiddleware.swift */; };
 		045AD7B2224CD3E300DDCD89 /* Request+AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AD7B1224CD3E300DDCD89 /* Request+AppSession.swift */; };
+		045AD7B5224D336200DDCD89 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AD7B4224D336200DDCD89 /* AuthController.swift */; };
+		045AD7B7224D33A000DDCD89 /* LoginInitReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AD7B6224D33A000DDCD89 /* LoginInitReply.swift */; };
+		045AD7B9224D33B000DDCD89 /* LoginCommitReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AD7B8224D33B000DDCD89 /* LoginCommitReply.swift */; };
+		045AD7BB224D33BF00DDCD89 /* LoginCommitRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045AD7BA224D33BF00DDCD89 /* LoginCommitRequest.swift */; };
 		OBJ_1049 /* HolidayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* HolidayController.swift */; };
 		OBJ_1050 /* TodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* TodoController.swift */; };
 		OBJ_1051 /* HMACMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* HMACMiddleware.swift */; };
@@ -5647,6 +5651,10 @@
 /* Begin PBXFileReference section */
 		045AD7AF224CD15000DDCD89 /* DeviceMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMiddleware.swift; sourceTree = "<group>"; };
 		045AD7B1224CD3E300DDCD89 /* Request+AppSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+AppSession.swift"; sourceTree = "<group>"; };
+		045AD7B4224D336200DDCD89 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		045AD7B6224D33A000DDCD89 /* LoginInitReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInitReply.swift; sourceTree = "<group>"; };
+		045AD7B8224D33B000DDCD89 /* LoginCommitReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCommitReply.swift; sourceTree = "<group>"; };
+		045AD7BA224D33BF00DDCD89 /* LoginCommitRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCommitRequest.swift; sourceTree = "<group>"; };
 		"Console::Command::Product" /* Command.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Command.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Console::Product" /* Console.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Console.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Console::Logging::Product" /* Logging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Logging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -7885,6 +7893,8 @@
 		OBJ_29 /* Reply */ = {
 			isa = PBXGroup;
 			children = (
+				045AD7B6224D33A000DDCD89 /* LoginInitReply.swift */,
+				045AD7B8224D33B000DDCD89 /* LoginCommitReply.swift */,
 				OBJ_30 /* HolidayReply.swift */,
 			);
 			path = Reply;
@@ -7893,6 +7903,7 @@
 		OBJ_31 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				045AD7BA224D33BF00DDCD89 /* LoginCommitRequest.swift */,
 				OBJ_32 /* HolidayRequest.swift */,
 			);
 			path = Request;
@@ -9685,6 +9696,7 @@
 		OBJ_9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				045AD7B4224D336200DDCD89 /* AuthController.swift */,
 				OBJ_10 /* HolidayController.swift */,
 				OBJ_11 /* TodoController.swift */,
 			);
@@ -11769,11 +11781,14 @@
 			files = (
 				OBJ_1049 /* HolidayController.swift in Sources */,
 				OBJ_1050 /* TodoController.swift in Sources */,
+				045AD7B5224D336200DDCD89 /* AuthController.swift in Sources */,
 				OBJ_1051 /* HMACMiddleware.swift in Sources */,
 				OBJ_1052 /* RequestMiddleware.swift in Sources */,
 				OBJ_1053 /* SessionMiddleware.swift in Sources */,
+				045AD7BB224D33BF00DDCD89 /* LoginCommitRequest.swift in Sources */,
 				OBJ_1055 /* Department.swift in Sources */,
 				045AD7B2224CD3E300DDCD89 /* Request+AppSession.swift in Sources */,
+				045AD7B7224D33A000DDCD89 /* LoginInitReply.swift in Sources */,
 				OBJ_1056 /* Employee.swift in Sources */,
 				045AD7B0224CD15000DDCD89 /* DeviceMiddleware.swift in Sources */,
 				OBJ_1057 /* Holiday.swift in Sources */,
@@ -11782,6 +11797,7 @@
 				OBJ_1063 /* Organisation.swift in Sources */,
 				OBJ_1064 /* PublicHoliday.swift in Sources */,
 				OBJ_1065 /* HolidayReply.swift in Sources */,
+				045AD7B9224D33B000DDCD89 /* LoginCommitReply.swift in Sources */,
 				OBJ_1066 /* HolidayRequest.swift in Sources */,
 				OBJ_1067 /* User.swift in Sources */,
 				OBJ_1068 /* app.swift in Sources */,
