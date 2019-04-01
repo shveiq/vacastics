@@ -35,15 +35,17 @@ public final class HMACMiddleware: Middleware {
         let keyStr = session["loginToken"] ?? ""
         
         let data = bodyData + sessionData
-        print(data)
         let key = Data(base64Encoded: keyStr) ?? Data()
         
         guard key.count == 32, data.count > 0 else {
             return try next.respond(to: req)
         }
-        
+
+        print(String(data: data, encoding: .utf8))
+        print(key.hexEncodedString())
+
         let computeHMAC = try HMAC.SHA256.authenticate(data, key: key)
-        
+
         guard let localHmac = hmac, localHmac == computeHMAC.hexEncodedString() else {
             throw AuthenticationError(
                 identifier: "notAuthenticated",
