@@ -1,4 +1,4 @@
 module CCryptoOpenSSL {
-    umbrella "/Users/shveiq/Projects/Test/vacastics/.build/checkouts/crypto.git--8195543074705790648/Sources/CCryptoOpenSSL/include"
+    umbrella "/Users/shveiq/Desktop/Apki.Mobi/Vacastics/BACKEND/vacastics/.build/checkouts/crypto.git--770732504126311781/Sources/CCryptoOpenSSL/include"
     export *
 }

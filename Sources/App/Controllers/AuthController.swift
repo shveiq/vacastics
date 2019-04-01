@@ -6,12 +6,13 @@
 //
 
 import Vapor
+import Crypto
 
 final class AuthController {
     
     func index(_ req: Request) throws -> Future<LoginInitReply> {
 
-        let loginToken = "aaaaaaassssss"
+        let loginToken = try CryptoRandom().generateData(count: 32).base64EncodedString()
         let session = try req.appSession()
         session["loginToken"] = loginToken
         let reply = LoginInitReply(loginToken: loginToken)

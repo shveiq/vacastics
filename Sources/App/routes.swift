@@ -13,7 +13,9 @@ public func routes(_ router: Router) throws {
                 return "Session set"
     }
     
+    let authRouter = router.grouped(AuthenticateMiddleware.self)
+    
     let holidayController = HolidayController()
-    router.post("holidays", use: holidayController.index)
+    authRouter.post("holidays", use: holidayController.index)
 //    router.delete("todos", Todo.parameter, use: todoController.delete)
 }
