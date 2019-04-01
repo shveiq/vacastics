@@ -13,11 +13,13 @@ internal final class AuthenticateCache: ServiceType {
         return .init()
     }
     
-    /// The cached session.
+    var isLoaded: Bool
+
     var user: User?
     
     /// Creates a new `SessionCache`.
     init(user: User? = nil) {
+        self.isLoaded = false
         self.user = user
     }
 }
@@ -63,13 +65,41 @@ extension Request {
     public func authenticate(_ user: User) throws
     {
         let cache = try privateContainer.make(AuthenticateCache.self)
+
+        guard try hasAppSession() else {
+            cache.isLoaded = false
+            cache.user = nil
+            return
+        }
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(user)
+        let session = try appSession()
+        session["authenticateUser"] = data.base64EncodedString()
+        
         cache.user = user
+        cache.isLoaded = true
     }
     
     public func authenticated() throws -> User?
     {
         let cache = try privateContainer.make(AuthenticateCache.self)
-        return cache.user
+        if cache.isLoaded {
+            return cache.user
+        } else {
+            guard try hasAppSession() else {
+                return nil
+            }
+            let session = try appSession()
+            guard let dataStr = session["authenticateUser"],
+                  let dataBase = Data(base64Encoded: dataStr) else {
+                    return nil
+            }
+            let decoder = JSONDecoder()
+            let user = try decoder.decode(User.self, from: dataBase)
+            cache.user = user
+            cache.isLoaded = true
+            return cache.user
+        }
     }
     
     public func isAuthenticated() throws -> Bool

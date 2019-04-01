@@ -10,13 +10,7 @@ import Vapor
 public final class AuthenticateMiddleware: Middleware, ServiceType {
     
     public static func makeService(for container: Container) throws -> Self {
-        return try .init(auths: container.make())
-    }
-    
-    public let auths: KeyedCache
-   
-    public init(auths: KeyedCache) {
-        self.auths = auths
+        return .init();
     }
     
     public func respond(to req: Request, chainingTo next: Responder) throws -> Future<Response> {
