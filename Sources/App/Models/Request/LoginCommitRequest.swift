@@ -11,7 +11,6 @@ struct LoginCommitRequest: Codable
 {
     var email: String
     var password: String
-    var loginToken: String
 }
 
 extension LoginCommitRequest: RequestDecodable
