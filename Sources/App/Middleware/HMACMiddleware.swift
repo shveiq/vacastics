@@ -41,9 +41,6 @@ public final class HMACMiddleware: Middleware {
             return try next.respond(to: req)
         }
 
-        print(String(data: data, encoding: .utf8))
-        print(key.hexEncodedString())
-
         let computeHMAC = try HMAC.SHA256.authenticate(data, key: key)
 
         guard let localHmac = hmac, localHmac == computeHMAC.hexEncodedString() else {
@@ -55,9 +52,10 @@ public final class HMACMiddleware: Middleware {
         }
         
         return try next.respond(to: req).map { res in
-
-            print(res.http.body)
-            
+            if hmac != nil {
+                let newHMAC = try HMAC.SHA256.authenticate(res.http.body.data ?? Data(), key: key)
+                res.http.headers.add(name: "X-HMAC", value: newHMAC.hexEncodedString())
+            }
             return res
         }
     }
