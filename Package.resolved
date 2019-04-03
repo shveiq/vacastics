@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/vapor/mysql.git",
         "state": {
           "branch": null,
-          "revision": "ae693f716ca3ea968567ca7055f161261c7b743a",
-          "version": "3.2.3"
+          "revision": "d1561ae722220cafe0ef4b51549f87aebc70ddb1",
+          "version": "3.2.4"
         }
       },
       {

@@ -12,13 +12,15 @@ public final class HMACMiddleware: Middleware {
     
     public func respond(to req: Request, chainingTo next: Responder) throws -> Future<Response> {
 
-        var hmac: String?;
+        let hmac: String?
         if req.http.headers.contains(name: "X-HMAC") {
             let x = req.http.headers["X-HMAC"]
             hmac = x.first
+        } else {
+            hmac = nil
         }
         
-        guard hmac != nil else {
+        guard let requestHmac = hmac else {
             return try next.respond(to: req)
         }
         
@@ -32,7 +34,7 @@ public final class HMACMiddleware: Middleware {
         let sessionData = sessionID?.data(using: .utf8) ?? Data()
         
         let session = try req.appSession()
-        let keyStr = session["loginToken"] ?? ""
+        let keyStr = session["securityKey"] ?? ""
         
         let data = bodyData + sessionData
         let key = Data(base64Encoded: keyStr) ?? Data()
@@ -41,12 +43,9 @@ public final class HMACMiddleware: Middleware {
             return try next.respond(to: req)
         }
 
-        print(String(data: data, encoding: .utf8))
-        print(key.hexEncodedString())
-
         let computeHMAC = try HMAC.SHA256.authenticate(data, key: key)
 
-        guard let localHmac = hmac, localHmac == computeHMAC.hexEncodedString() else {
+        guard requestHmac == computeHMAC.hexEncodedString() else {
             throw AuthenticationError(
                 identifier: "notAuthenticated",
                 reason: "Request with invalid HMAC.",
@@ -56,7 +55,8 @@ public final class HMACMiddleware: Middleware {
         
         return try next.respond(to: req).map { res in
 
-            print(res.http.body)
+            let newHMAC = try HMAC.SHA256.authenticate(res.http.body.data ?? Data(), key: key)
+            res.http.headers.add(name: "X-HMAC", value: newHMAC.hexEncodedString())
             
             return res
         }

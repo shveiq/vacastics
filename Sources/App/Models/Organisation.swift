@@ -81,3 +81,5 @@ extension Organisation {
 }
 
 extension Organisation: Content { }
+
+extension Organisation: Parameter { }

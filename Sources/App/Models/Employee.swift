@@ -93,6 +93,8 @@ extension Employee {
 
 extension Employee: Content { }
 
+extension Employee: Parameter { }
+
 final class EmployeeAllowance: Model {
     typealias Database = MySQLDatabase
     typealias ID = Int
@@ -204,3 +206,4 @@ extension EmployeeWorkday {
 }
 
 extension EmployeeWorkday: Content { }
+

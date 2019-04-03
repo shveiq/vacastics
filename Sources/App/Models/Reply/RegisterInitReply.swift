@@ -1,13 +1,13 @@
 //
-//  LoginInitReply.swift
+//  RegisterInitReply.swift
 //  App
 //
-//  Created by Paweł Szenk on 28/03/2019.
+//  Created by Pawel Szenk on 03/04/2019.
 //
 
 import Vapor
 
-struct LoginInitReply: Codable {
+struct RegisterInitReply: Codable {
     
     var securityKey: String
     
@@ -19,7 +19,6 @@ struct LoginInitReply: Codable {
     {
         case securityKey = "security_key"
     }
-    
 }
 
-extension LoginInitReply: Content { }
+extension RegisterInitReply: Content { }
