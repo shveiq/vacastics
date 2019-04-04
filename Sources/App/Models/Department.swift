@@ -83,3 +83,5 @@ extension Department {
 }
 
 extension Department: Content { }
+
+extension Department: Parameter { }
